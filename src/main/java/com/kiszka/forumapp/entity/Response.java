@@ -8,6 +8,8 @@ import java.sql.Timestamp;
 @Table(name = "response")
 public class Response {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "response_ID_SEQ")
+    @SequenceGenerator(name = "response_ID_SEQ",sequenceName = "response_ID_SEQ",allocationSize = 1)
     @Column(name = "responseId")
     private int responseId;
     @Column(name = "responseText")

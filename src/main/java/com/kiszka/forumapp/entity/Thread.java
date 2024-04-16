@@ -9,6 +9,8 @@ import java.util.List;
 @Table(name = "thread")
 public class Thread {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "thread_ID_SEQ")
+    @SequenceGenerator(name = "thread_ID_SEQ",sequenceName = "thread_ID_SEQ",allocationSize = 1)
     @Column(name = "threadId")
     private int threadId;
     @Column(name = "topic")
@@ -19,14 +21,11 @@ public class Thread {
     private Timestamp threadDatetime;
     @Column(name = "likeCounter")
     private int LikeCounter;
-
     @ManyToOne
     @JoinColumn(name = "forumUser_userId")
     private ForumUser forumUser;
-
     @OneToMany(mappedBy = "thread")
     private List<Response> responses;
-
     @OneToMany(mappedBy = "thread")
     private List<Tag> tags;
 
