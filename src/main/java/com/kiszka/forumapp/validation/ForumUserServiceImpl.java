@@ -12,12 +12,12 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class UserServiceImpl implements UserService {
-    private final UserRepository userRepository;
+public class ForumUserServiceImpl implements ForumUserService {
+    private final ForumUserRepository forumUserRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder){
-        this.userRepository = userRepository;
+    public ForumUserServiceImpl(ForumUserRepository forumUserRepository, PasswordEncoder passwordEncoder){
+        this.forumUserRepository = forumUserRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -28,22 +28,22 @@ public class UserServiceImpl implements UserService {
         forumUser.setNickname(forumUserDto.getNickname());
         forumUser.setPassword(passwordEncoder.encode(forumUserDto.getPassword()));
         forumUser.setRole(forumUserDto.getRole());
-        userRepository.save(forumUser);
+        forumUserRepository.save(forumUser);
     }
 
     @Override
     public ForumUser findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return forumUserRepository.findByEmail(email);
     }
 
     @Override
     public ForumUser getAdmin() {
-        return userRepository.findByRole("ADMIN");
+        return forumUserRepository.findByRole("ADMIN");
     }
 
     @Override
     public List<ForumUserDto> findAllUsers() {
-        List<ForumUser> users = userRepository.findAll();
+        List<ForumUser> users = forumUserRepository.findAll();
         return users.stream()
                 .map(this::mapToUserDto)
                 .collect(Collectors.toList());
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(principal instanceof UserDetails){
             String email = ((UserDetails)principal).getUsername();
-            return userRepository.findByEmail(email);
+            return forumUserRepository.findByEmail(email);
         }
         return null;
     }

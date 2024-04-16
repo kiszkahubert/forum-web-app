@@ -4,7 +4,7 @@ import com.kiszka.forumapp.entity.ForumUser;
 
 import java.util.List;
 
-public interface UserService {
+public interface ForumUserService {
     void saveUser(ForumUserDto forumUserDto);
     ForumUser findUserByEmail(String email);
     ForumUser getCurrentUser();

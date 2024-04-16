@@ -2,7 +2,7 @@ package com.kiszka.forumapp.controllers;
 
 import com.kiszka.forumapp.entity.ForumUser;
 import com.kiszka.forumapp.validation.ForumUserDto;
-import com.kiszka.forumapp.validation.UserService;
+import com.kiszka.forumapp.validation.ForumUserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ValidationControllers { ;
-    private final UserService userService;
+    private final ForumUserService forumUserService;
     @Autowired
-    public ValidationControllers(UserService userService){
-        this.userService = userService;
+    public ValidationControllers(ForumUserService forumUserService){
+        this.forumUserService = forumUserService;
     }
     @GetMapping("/login")
     public String login(){
-        return "validation/login";
+        return "login";
     }
     @GetMapping("/logout")
     public String logout(){
@@ -31,20 +31,20 @@ public class ValidationControllers { ;
     public String showRegistrationForm(Model model){
         ForumUserDto userDto = new ForumUserDto();
         model.addAttribute("user",userDto);
-        return "validation/register";
+        return "register";
     }
     @PostMapping("/register/save")
     public String registration(@Valid @ModelAttribute("user") ForumUserDto forumUserDto, BindingResult result, Model model){
-        ForumUser existingUser = userService.findUserByEmail(forumUserDto.getEmail());
+        ForumUser existingUser = forumUserService.findUserByEmail(forumUserDto.getEmail());
         if(existingUser!=null && existingUser.getEmail()!=null &&!existingUser.getEmail().isEmpty()){
             result.rejectValue("email","400","Konto z podanym adresem email już istnieje");
         }
         if(result.hasErrors()){
             model.addAttribute("user",forumUserDto);
-            return "validation/register";
+            return "register";
         }
         forumUserDto.setRole("USER");
-        userService.saveUser(forumUserDto);
+        forumUserService.saveUser(forumUserDto);
         return "redirect:/login";
     }
 }

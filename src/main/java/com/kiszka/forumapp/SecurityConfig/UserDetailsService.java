@@ -2,7 +2,7 @@ package com.kiszka.forumapp.SecurityConfig;
 
 
 import com.kiszka.forumapp.entity.ForumUser;
-import com.kiszka.forumapp.validation.UserRepository;
+import com.kiszka.forumapp.validation.ForumUserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,16 +16,16 @@ import java.util.Collections;
 @Service
 @Slf4j
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
-    private final UserRepository userRepository;
+    private final ForumUserRepository forumUserRepository;
 
     @Autowired
-    public UserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserDetailsService(ForumUserRepository forumUserRepository) {
+        this.forumUserRepository = forumUserRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        ForumUser user = userRepository.findByEmail(email);
+        ForumUser user = forumUserRepository.findByEmail(email);
         if(user==null){
             throw new UsernameNotFoundException("Could not find user");
         }
