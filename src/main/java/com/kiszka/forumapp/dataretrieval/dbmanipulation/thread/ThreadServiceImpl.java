@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class ThreadServiceImpl implements ThreadService {
     private final ThreadRepository threadRepository;
-    ForumUserService forumUserService;
+    private final ForumUserService forumUserService;
 
     @Autowired
     public ThreadServiceImpl(ForumUserService forumUserService, ThreadRepository threadRepository) {
@@ -45,4 +45,10 @@ public class ThreadServiceImpl implements ThreadService {
     public List<Thread> getAllUserThreads() {
         return threadRepository.findAllBy(forumUserService.getCurrentUser().getEmail());
     }
+
+    @Override
+    public Thread returnCurrentThread(int id) {
+        return threadRepository.findByThreadId(id);
+    }
+
 }

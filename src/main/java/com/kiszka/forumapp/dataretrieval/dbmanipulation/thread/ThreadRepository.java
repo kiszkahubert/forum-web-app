@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ThreadRepository extends JpaRepository<Thread,Integer> {
     List<Thread> findAllBy(String email);
+    Thread findByThreadId(int id);
 }

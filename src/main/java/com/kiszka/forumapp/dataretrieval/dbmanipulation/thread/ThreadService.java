@@ -5,4 +5,5 @@ import java.util.List;
 public interface ThreadService {
     void createThread(ThreadDto threadDto);
     List<Thread> getAllUserThreads();
+    Thread returnCurrentThread(int id);
 }
