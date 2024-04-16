@@ -3,9 +3,11 @@ package com.kiszka.forumapp.dataretrieval.dbmanipulation.response;
 import com.kiszka.forumapp.dataretrieval.dbmanipulation.thread.Thread;
 import com.kiszka.forumapp.dataretrieval.validation.ForumUser;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.sql.Timestamp;
 
+@Data
 @Entity
 @Table(name = "response")
 public class Response {
