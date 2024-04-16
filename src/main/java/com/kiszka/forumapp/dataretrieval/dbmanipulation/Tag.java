@@ -1,7 +1,10 @@
-package com.kiszka.forumapp.entity;
+package com.kiszka.forumapp.dataretrieval.dbmanipulation;
 
+import com.kiszka.forumapp.dataretrieval.dbmanipulation.thread.Thread;
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "tag")
 public class Tag {

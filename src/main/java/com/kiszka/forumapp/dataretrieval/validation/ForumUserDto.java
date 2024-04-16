@@ -1,4 +1,4 @@
-package com.kiszka.forumapp.validation;
+package com.kiszka.forumapp.dataretrieval.validation;
 
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;

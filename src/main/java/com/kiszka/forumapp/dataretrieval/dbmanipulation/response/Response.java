@@ -1,5 +1,7 @@
-package com.kiszka.forumapp.entity;
+package com.kiszka.forumapp.dataretrieval.dbmanipulation.response;
 
+import com.kiszka.forumapp.dataretrieval.dbmanipulation.thread.Thread;
+import com.kiszka.forumapp.dataretrieval.validation.ForumUser;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;

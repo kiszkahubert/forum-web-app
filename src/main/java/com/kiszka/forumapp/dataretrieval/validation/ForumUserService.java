@@ -1,6 +1,4 @@
-package com.kiszka.forumapp.validation;
-
-import com.kiszka.forumapp.entity.ForumUser;
+package com.kiszka.forumapp.dataretrieval.validation;
 
 import java.util.List;
 

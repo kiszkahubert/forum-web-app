@@ -1,6 +1,5 @@
-package com.kiszka.forumapp.validation;
+package com.kiszka.forumapp.dataretrieval.validation;
 
-import com.kiszka.forumapp.entity.ForumUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

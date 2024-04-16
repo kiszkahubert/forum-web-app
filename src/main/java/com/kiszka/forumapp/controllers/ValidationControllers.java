@@ -1,8 +1,8 @@
 package com.kiszka.forumapp.controllers;
 
-import com.kiszka.forumapp.entity.ForumUser;
-import com.kiszka.forumapp.validation.ForumUserDto;
-import com.kiszka.forumapp.validation.ForumUserService;
+import com.kiszka.forumapp.dataretrieval.validation.ForumUser;
+import com.kiszka.forumapp.dataretrieval.validation.ForumUserDto;
+import com.kiszka.forumapp.dataretrieval.validation.ForumUserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

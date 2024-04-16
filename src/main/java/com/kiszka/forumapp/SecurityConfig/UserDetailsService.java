@@ -1,8 +1,8 @@
 package com.kiszka.forumapp.SecurityConfig;
 
 
-import com.kiszka.forumapp.entity.ForumUser;
-import com.kiszka.forumapp.validation.ForumUserRepository;
+import com.kiszka.forumapp.dataretrieval.validation.ForumUser;
+import com.kiszka.forumapp.dataretrieval.validation.ForumUserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

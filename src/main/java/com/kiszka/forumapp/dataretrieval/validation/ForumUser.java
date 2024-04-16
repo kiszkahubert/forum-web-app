@@ -1,5 +1,7 @@
-package com.kiszka.forumapp.entity;
+package com.kiszka.forumapp.dataretrieval.validation;
 
+import com.kiszka.forumapp.dataretrieval.dbmanipulation.response.Response;
+import com.kiszka.forumapp.dataretrieval.dbmanipulation.thread.Thread;
 import jakarta.persistence.*;
 import lombok.Data;
 

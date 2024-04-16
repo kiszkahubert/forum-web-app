@@ -1,10 +1,15 @@
-package com.kiszka.forumapp.entity;
+package com.kiszka.forumapp.dataretrieval.dbmanipulation.thread;
 
+import com.kiszka.forumapp.dataretrieval.validation.ForumUser;
+import com.kiszka.forumapp.dataretrieval.dbmanipulation.response.Response;
+import com.kiszka.forumapp.dataretrieval.dbmanipulation.Tag;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.sql.Timestamp;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "thread")
 public class Thread {
