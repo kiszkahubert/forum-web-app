@@ -11,6 +11,5 @@ import java.util.List;
 public class ThreadDto {
     private String topic;
     private String textMessage;
-    private Timestamp threadDatetime;
-    private List<String> tagValues;
+    private String tags;
 }

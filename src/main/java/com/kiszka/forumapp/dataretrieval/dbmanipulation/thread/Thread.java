@@ -23,7 +23,7 @@ public class Thread {
     @Column(name = "textMessage")
     private String textMessage;
     @Column(name = "threadDateTime")
-    private Timestamp threadDatetime;
+    private Timestamp threadDateTime;
     @Column(name = "likeCounter")
     private int LikeCounter;
     @ManyToOne
@@ -31,7 +31,7 @@ public class Thread {
     private ForumUser forumUser;
     @OneToMany(mappedBy = "thread")
     private List<Response> responses;
-    @OneToMany(mappedBy = "thread")
+    @OneToMany(mappedBy = "thread", cascade = CascadeType.ALL)
     private List<Tag> tags;
 
 }
