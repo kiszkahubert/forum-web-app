@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Response</title>
+</head>
+<body>
+<form action="#" th:action="@{/add/response/{threadId}(threadId=${threadId})}" method="post">
+    <textarea cols="50" rows="50" name="responseText" required></textarea>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

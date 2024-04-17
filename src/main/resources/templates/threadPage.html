@@ -37,6 +37,10 @@
     <p><span th:text="${thread.forumUser.nickname}"></span><span th:text="${thread.threadDateTime}"></span></p>
     <p class="tag" th:each="tag : ${thread.tags}" th:text="${tag.tagValue}">Tag</p>
 </div>
-<a href="@{/add/response}"><button>Dodaj komentarz</button></a>
+<div class="post" th:each="response : ${thread.responses}">
+    <p th:text="${response.responseText}"></p>
+    <p><span th:text="${response.forumUser.nickname}"></span><span th:text="${response.responseDatetime}"></span></p>
+</div>
+<a th:href="@{/add/response/{threadId}(threadId=${thread.threadId})}"><button>Dodaj komentarz</button></a>
 </body>
 </html>

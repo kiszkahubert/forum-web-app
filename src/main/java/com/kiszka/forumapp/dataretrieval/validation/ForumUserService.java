@@ -6,6 +6,4 @@ public interface ForumUserService {
     void saveUser(ForumUserDto forumUserDto);
     ForumUser findUserByEmail(String email);
     ForumUser getCurrentUser();
-    List<ForumUserDto> findAllUsers();
-    ForumUser getAdmin();
 }

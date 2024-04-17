@@ -35,18 +35,6 @@ public class ForumUserServiceImpl implements ForumUserService {
         return forumUserRepository.findByEmail(email);
     }
 
-    @Override
-    public ForumUser getAdmin() {
-        return forumUserRepository.findByRole("ADMIN");
-    }
-
-    @Override
-    public List<ForumUserDto> findAllUsers() {
-        List<ForumUser> users = forumUserRepository.findAll();
-        return users.stream()
-                .map(this::mapToUserDto)
-                .collect(Collectors.toList());
-    }
 
     @Override
     public ForumUser getCurrentUser() {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="eng">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Wątki</title>
     <style>
@@ -35,11 +35,10 @@
 <h1 class="main-label">Forum dyskusyjne</h1>
 <div class="most-active-users">
     <h2>Najaktywniejsi użytkownicy:</h2>
-    <!-- Add most active users here -->
+
 </div>
 <h1>Wszystkie wątki</h1>
 <div th:each="thread : ${threads}" class="post">
-<!--    <span th:text="${thread.likeCounter}">0</span>-->
     <a th:href="@{/thread/{id}(id=${thread.threadId})}"><h1 th:text="${thread.topic}"></h1></a>
     <p
             th:text="${#strings.length(thread.textMessage) > 100} ?

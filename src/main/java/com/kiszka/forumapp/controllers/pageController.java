@@ -19,14 +19,12 @@ public class pageController {
     private final ThreadService threadService;
     private final ForumUserService forumUserService;
     private final ResponseService responseService;
-
     @Autowired
     public pageController(ThreadService threadService, ForumUserService forumUserService, ResponseService responseService) {
         this.threadService = threadService;
         this.forumUserService = forumUserService;
         this.responseService = responseService;
     }
-
     @GetMapping("/get/thread")
     public String getThreads(Model model){
         model.addAttribute("threads",threadService.getAllThreads());
@@ -39,7 +37,7 @@ public class pageController {
     @PostMapping("/post/thread")
     public String postThread(@ModelAttribute ThreadDto threadDto){
         threadService.createThread(threadDto);
-        return "redirect:/home";
+        return "redirect:/get/thread";
     }
     @GetMapping("/thread/{id}")
     public String showThread(@PathVariable("id") int id, Model model){
@@ -47,8 +45,8 @@ public class pageController {
         model.addAttribute("thread",thread);
         return "threadPage";
     }
-    @PostMapping("/add/response")
-    public String addResponse(@RequestParam("threadId") int threadId, @RequestParam("responseText") String responseText){
+    @PostMapping("/add/response/{threadId}")
+    public String addResponse(@PathVariable("threadId") int threadId, @RequestParam("responseText") String responseText){
         ForumUser currentUser = forumUserService.getCurrentUser();
         Thread thread = threadService.returnCurrentThread(threadId);
         Response response = Response.builder()
@@ -58,7 +56,12 @@ public class pageController {
                 .forumUser(currentUser)
                 .thread(thread)
                 .build();
-        responseService.saverResponse(response);
+        responseService.saveResponse(response);
         return "redirect:/thread/"+threadId;
+    }
+    @GetMapping("/add/response/{threadId}")
+    public String addResponse(@PathVariable("threadId") int threadId, Model model){
+        model.addAttribute("threadId",threadId);
+        return "responseForm";
     }
 }
