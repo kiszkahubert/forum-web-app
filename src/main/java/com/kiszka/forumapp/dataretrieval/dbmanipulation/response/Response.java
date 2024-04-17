@@ -3,12 +3,18 @@ package com.kiszka.forumapp.dataretrieval.dbmanipulation.response;
 import com.kiszka.forumapp.dataretrieval.dbmanipulation.thread.Thread;
 import com.kiszka.forumapp.dataretrieval.validation.ForumUser;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "response")
 public class Response {
     @Id

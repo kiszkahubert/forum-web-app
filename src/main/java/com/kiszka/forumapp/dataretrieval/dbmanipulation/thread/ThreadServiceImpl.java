@@ -11,7 +11,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Arrays.asList;
 
 @Slf4j
 @Service

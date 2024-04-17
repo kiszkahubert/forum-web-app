@@ -11,21 +11,17 @@ import java.sql.Timestamp;
 public class ResponseServiceImpl implements ResponseService {
     private final ForumUserService forumUserService;
     private final ThreadService threadService;
+    private final ResponseRepository responseRepository;
 
     @Autowired
-    public ResponseServiceImpl(ForumUserService forumUserService, ThreadService threadService) {
+    public ResponseServiceImpl(ForumUserService forumUserService, ThreadService threadService, ResponseRepository responseRepository) {
         this.forumUserService = forumUserService;
         this.threadService = threadService;
+        this.responseRepository = responseRepository;
     }
 
     @Override
-    public void saveResponse(ResponseDto responseDto) {
-        Response response = new Response();
-        response.setResponseText(responseDto.getResponseText());
-        response.setResponseText(responseDto.getResponseText());
-        response.setResponseDatetime(new Timestamp(System.currentTimeMillis()));
-        response.setLikeCounter(0);
-        response.setForumUser(forumUserService.getCurrentUser());
-//        response.setThread(threadService.returnCurrentThread()); //TODO tu trzeba pobrac REST API ze strony jej id
+    public Response saverResponse(Response response) {
+        return responseRepository.save(response);
     }
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thread Page</title>
+    <style>
+        .post {
+            border: 1px solid #000;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .post h1 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .post p {
+            margin: 5px 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        .post span:nth-child(2){
+            margin-left: 10px;
+        }
+        .tag{
+            display: inline-block;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Wątek</h1>
+<div class="post">
+    <h1 th:text="${thread.topic}"></h1>
+    <p th:text="${thread.textMessage}"></p>
+    <p><span th:text="${thread.forumUser.nickname}"></span><span th:text="${thread.threadDateTime}"></span></p>
+    <p class="tag" th:each="tag : ${thread.tags}" th:text="${tag.tagValue}">Tag</p>
+</div>
+<a href="@{/add/response}"><button>Dodaj komentarz</button></a>
+</body>
+</html>
