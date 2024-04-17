@@ -9,6 +9,9 @@ import com.kiszka.forumapp.dataretrieval.validation.ForumUser;
 import com.kiszka.forumapp.dataretrieval.validation.ForumUserRepository;
 import com.kiszka.forumapp.dataretrieval.validation.ForumUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,10 +33,11 @@ public class pageController {
         this.forumUserRepository = forumUserRepository;
     }
     @GetMapping("/get/thread")
-    public String getThreads(Model model){
+    public String getThreads(Model model, @PageableDefault(size = 5) Pageable pageable){
         List<ForumUser> mostActiveUsers = getMostActiveUsers();
         model.addAttribute("users",mostActiveUsers);
-        model.addAttribute("threads",threadService.getAllThreads());
+        Page<Thread> threads = threadService.getAllPageThreads(pageable);
+        model.addAttribute("threads",threads);
         return "/home";
     }
     @GetMapping("/add/thread")

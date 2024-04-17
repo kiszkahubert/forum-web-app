@@ -3,6 +3,7 @@ package com.kiszka.forumapp.dataretrieval.dbmanipulation.response;
 import com.kiszka.forumapp.dataretrieval.dbmanipulation.thread.Thread;
 import com.kiszka.forumapp.dataretrieval.validation.ForumUser;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class Response {
     @SequenceGenerator(name = "response_ID_SEQ",sequenceName = "response_ID_SEQ",allocationSize = 1)
     @Column(name = "responseId")
     private int responseId;
+    @Size(max=1000)
     @Column(name = "responseText")
     private String responseText;
     @Column(name = "responseDatetime")

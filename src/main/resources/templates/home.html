@@ -56,11 +56,16 @@
     <p
             th:text="${#strings.length(thread.textMessage) > 100} ?
      ${#strings.substring(thread.textMessage, 0, 100)} : ${thread.textMessage}">
-
     </p>
     <p><span th:text="${thread.forumUser.nickname}"></span><span th:text="${thread.threadDateTime}"></span></p>
     <p class="tag" th:each="tag : ${thread.tags}" th:text="${tag.tagValue}">Tag</p>
 </div>
 <a href="/add/thread"><button>Dodaj nowy post</button></a>
+<div class="page-navigation">
+    <a th:if="${threads.hasPrevious()}" th:href="@{/get/thread(page=${threads.number-1})}">Poprzednia strona</a>
+    <span th:text="${threads.number + 1}"></span>/<span th:text="${threads.totalPages}"></span>
+    <a th:if="${threads.hasNext()}" th:href="@{/get/thread(page=${threads.number+1})}">Następna strona</a>
+</div>
+
 </body>
 </html>

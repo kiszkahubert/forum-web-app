@@ -5,6 +5,8 @@ import com.kiszka.forumapp.dataretrieval.dbmanipulation.Tag;
 import com.kiszka.forumapp.dataretrieval.validation.ForumUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -57,5 +59,10 @@ public class ThreadServiceImpl implements ThreadService {
     @Override
     public List<Thread> getAllThreads() {
         return threadRepository.findAll();
+    }
+
+    @Override
+    public Page<Thread> getAllPageThreads(Pageable pageable) {
+        return threadRepository.findAll(pageable);
     }
 }

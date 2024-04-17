@@ -37,7 +37,7 @@ public class SecurityConfig {
                 formLogin
                         .loginPage("/login")
                         .successHandler(((request, response, authentication) ->
-                                response.sendRedirect("/home")))
+                                response.sendRedirect("/get/thread")))
                         .permitAll());
         http.logout(logout->
                 logout.invalidateHttpSession(true)

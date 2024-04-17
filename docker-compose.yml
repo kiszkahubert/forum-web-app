@@ -1,0 +1,19 @@
+services:
+  web_app_db:
+    image: credentials_db
+    ports:
+      - "1521:1521"
+    networks:
+      - webapp_net
+
+  web_app:
+    image: boot_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - credentials_db
+    networks:
+      - webapp_net
+networks:
+  webapp_net:
+    driver: bridge

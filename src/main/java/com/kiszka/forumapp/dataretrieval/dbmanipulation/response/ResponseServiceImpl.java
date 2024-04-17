@@ -14,8 +14,8 @@ public class ResponseServiceImpl implements ResponseService {
     }
 
     @Override
-    public Response saveResponse(Response response) {
-        return responseRepository.save(response);
+    public void saveResponse(Response response) {
+        responseRepository.save(response);
     }
 
 }
