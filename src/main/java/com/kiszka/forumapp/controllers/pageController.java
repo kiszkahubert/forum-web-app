@@ -6,6 +6,7 @@ import com.kiszka.forumapp.dataretrieval.dbmanipulation.thread.Thread;
 import com.kiszka.forumapp.dataretrieval.dbmanipulation.thread.ThreadDto;
 import com.kiszka.forumapp.dataretrieval.dbmanipulation.thread.ThreadService;
 import com.kiszka.forumapp.dataretrieval.validation.ForumUser;
+import com.kiszka.forumapp.dataretrieval.validation.ForumUserRepository;
 import com.kiszka.forumapp.dataretrieval.validation.ForumUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,20 +14,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Controller
 public class pageController {
     private final ThreadService threadService;
     private final ForumUserService forumUserService;
     private final ResponseService responseService;
+    private final ForumUserRepository forumUserRepository;
     @Autowired
-    public pageController(ThreadService threadService, ForumUserService forumUserService, ResponseService responseService) {
+    public pageController(ThreadService threadService, ForumUserService forumUserService, ResponseService responseService, ForumUserRepository forumUserRepository) {
         this.threadService = threadService;
         this.forumUserService = forumUserService;
         this.responseService = responseService;
+        this.forumUserRepository = forumUserRepository;
     }
     @GetMapping("/get/thread")
     public String getThreads(Model model){
+        List<ForumUser> mostActiveUsers = getMostActiveUsers();
+        model.addAttribute("users",mostActiveUsers);
         model.addAttribute("threads",threadService.getAllThreads());
         return "/home";
     }
@@ -63,5 +69,14 @@ public class pageController {
     public String addResponse(@PathVariable("threadId") int threadId, Model model){
         model.addAttribute("threadId",threadId);
         return "responseForm";
+    }
+    public List<ForumUser> getMostActiveUsers(){
+        List<ForumUser> allUsers = forumUserRepository.findAll();
+        allUsers.sort((u1,u2)->{
+            int u1Activity = u1.getResponses().size() + u1.getThreads().size();
+            int u2Activity = u2.getResponses().size() + u2.getThreads().size();
+            return Integer.compare(u2Activity,u1Activity);
+        });
+        return allUsers.subList(0,Math.min(5, allUsers.size()));
     }
 }

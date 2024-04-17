@@ -4,7 +4,7 @@
     <title>Wątki</title>
     <style>
         .post {
-            border: 1px solid #000;
+            border: 1px solid black;
             margin: 10px;
             padding: 10px;
             border-radius: 5px;
@@ -29,13 +29,26 @@
             display: inline-block;
             margin-right: 10px;
         }
+        .user-info{
+            display: flex;
+        }
+        .user-info p:nth-child(2){
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
 <h1 class="main-label">Forum dyskusyjne</h1>
 <div class="most-active-users">
     <h2>Najaktywniejsi użytkownicy:</h2>
-
+    <ul>
+        <li th:each="user : ${users}" style="list-style-type: none">
+            <div class="user-info">
+                <p>Nickname: <span th:text="${user.nickname}"></span></p>
+                <p>Ilość postów <span th:text="${user.responses.size() + user.threads.size()}"></span></p>
+            </div>
+        </li>
+    </ul>
 </div>
 <h1>Wszystkie wątki</h1>
 <div th:each="thread : ${threads}" class="post">
